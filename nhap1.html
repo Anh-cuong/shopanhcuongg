@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Cửa Hàng Trái Cây</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .overlay {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.7);
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mt-auto {
+            margin-top: auto;
+        }
+
+        #shop-section {
+            padding-bottom: 30px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header style="background-color: #2E7D32; padding: 15px 0; text-align: center;">
+        <h1 style="color: white; margin-bottom: 10px;">Cửa Hàng Trái Cây</h1>
+        <nav>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 15px;">
+                <li><a href="./nhap1.html" class="nav-link">Trang Chủ</a></li>
+                <li><a href="./nhap.html" class="nav-link">Sản Phẩm</a></li>
+                <li><a href="./giohang.html" class="nav-link">Giỏ Hàng</a></li>
+                <li><a href="#" class="nav-link">Quản Trị</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="container my-4">
+        <div class="carousel slide" id="bannerCarousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./ảnh slide3.jpg" class="d-block w-100" alt="Banner 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="./ảnh slide2.jpg" class="d-block w-100" alt="Banner 2">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#bannerCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Sản phẩm nổi bật -->
+    <section class="container my-4">
+        <h2>Danh mục trái cây:</h2>
+        <div class="container mt-4" id="shop-section">
+            <div class="container mt-4">
+                <div class="row mt-3" id="product-list">
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-4 g-4" id="product-list">
+                <div class="col" data-name="Táo đỏ">
+                    <div class="card h-100 text-center">
+                        <img src="./tao.jpg" class="card-img-top" alt="Táo đỏ">
+                        <div class="card-body">
+                            <h5 class="card-title">Táo đỏ</h5>
+                            <p class="card-text"><strong>Giá: 50,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Táo đỏ', 50000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Cam vàng">
+                    <div class="card h-100 text-center">
+                        <img src="./cam.jpg" class="card-img-top" alt="Cam vàng">
+                        <div class="card-body">
+                            <h5 class="card-title">Cam vàng</h5>
+                            <p class="card-text"><strong>Giá: 40,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Cam vàng', 40000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Chuối">
+                    <div class="card h-100 text-center">
+                        <img src="./chuối.jpg" class="card-img-top" alt="Chuối chín">
+                        <div class="card-body">
+                            <h5 class="card-title">Chuối chín</h5>
+                            <p class="card-text"><strong>Giá: 30,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Chuối chín', 30000)">Thêm vào
+                                giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Vãi thiều">
+                    <div class="card h-100 text-center">
+                        <img src="./vãi.jpg" class="card-img-top" alt="Dưa hấu">
+                        <div class="card-body">
+                            <h5 class="card-title">Vãi thiều</h5>
+                            <p class="card-text"><strong>Giá: 35,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Vãi thiều', 35000)">Thêm vào
+                                giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Dâu tây">
+                    <div class="card h-100 text-center">
+                        <img src="./dâu tây.jpg" class="card-img-top" alt="Dâu tây">
+                        <div class="card-body">
+                            <h5 class="card-title">Dâu tây</h5>
+                            <p class="card-text"><strong>Giá: 40,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Dâu tây', 40000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Nho">
+                    <div class="card h-100 text-center">
+                        <img src="./nho.jpg" class="card-img-top" alt="Nho">
+                        <div class="card-body">
+                            <h5 class="card-title">Nho</h5>
+                            <p class="card-text"><strong>Giá: 45,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Nho', 45000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Lê xanh">
+                    <div class="card h-100 text-center">
+                        <img src="./lẽanh.webp" class="card-img-top" alt="Lê xanh">
+                        <div class="card-body">
+                            <h5 class="card-title">Lê xanh</h5>
+                            <p class="card-text"><strong>Giá: 35,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Lê xanh', 35000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Mận đỏ">
+                    <div class="card h-100 text-center">
+                        <img src="./man.jpg" class="card-img-top" alt="Mận đỏ">
+                        <div class="card-body">
+                            <h5 class="card-title">Mận đỏ</h5>
+                            <p class="card-text"><strong>Giá: 45,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Mận đỏ', 45000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Bơ sáp">
+                    <div class="card h-100 text-center">
+                        <img src="./bo.jpg" class="card-img-top" alt="Bơ sáp">
+                        <div class="card-body">
+                            <h5 class="card-title">Bơ sáp</h5>
+                            <p class="card-text"><strong>Giá: 60,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Bơ sáp', 60000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Chanh leo">
+                    <div class="card h-100 text-center">
+                        <img src="./chanh leo.jpg" class="card-img-top" alt="Chanh leo">
+                        <div class="card-body">
+                            <h5 class="card-title">Chanh leo</h5>
+                            <p class="card-text"><strong>Giá: 25,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Chanh leo', 25000)">Thêm vào
+                                giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Thanh long">
+                    <div class="card h-100 text-center">
+                        <img src="./thanh long.jpg" class="card-img-top" alt="Thanh long">
+                        <div class="card-body">
+                            <h5 class="card-title">Thanh long</h5>
+                            <p class="card-text"><strong>Giá: 30,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Thanh long', 30000)">Thêm vào
+                                giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Đu đủ">
+                    <div class="card h-100 text-center">
+                        <img src="./du du.jpg" class="card-img-top" alt="Đu đủ">
+                        <div class="card-body">
+                            <h5 class="card-title">Đu đủ</h5>
+                            <p class="card-text"><strong>Giá: 20,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Đu đủ', 20000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Dưa lưới">
+                    <div class="card h-100 text-center">
+                        <img src="./du luoi.jpg" class="card-img-top" alt="Dưa lưới">
+                        <div class="card-body">
+                            <h5 class="card-title">Dưa lưới</h5>
+                            <p class="card-text"><strong>Giá: 55,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Dưa lưới', 55000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Quýt đường">
+                    <div class="card h-100 text-center">
+                        <img src="./quyetduong.jpg" class="card-img-top" alt="Quýt đường">
+                        <div class="card-body">
+                            <h5 class="card-title">Quýt đường</h5>
+                            <p class="card-text"><strong>Giá: 35,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Quýt đường', 35000)">Thêm vào
+                                giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Lựu đỏ">
+                    <div class="card h-100 text-center">
+                        <img src="./luoi do.jpg" class="card-img-top" alt="Lựu đỏ">
+                        <div class="card-body">
+                            <h5 class="card-title">Lựu đỏ</h5>
+                            <p class="card-text"><strong>Giá: 50,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Lựu đỏ', 50000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Mít">
+                    <div class="card h-100 text-center">
+                        <img src="./mit.jpg" class="card-img-top" alt="Mít">
+                        <div class="card-body">
+                            <h5 class="card-title">Mít</h5>
+                            <p class="card-text"><strong>Giá: 60,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Mít', 60000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-name="Bưởi">
+                    <div class="card h-100 text-center">
+                        <img src="./buoi.jpg" class="card-img-top" alt="Bưởi">
+                        <div class="card-body">
+                            <h5 class="card-title">Bưởi</h5>
+                            <p class="card-text"><strong>Giá: 55,000 VND/kg</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Bưởi', 55000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-name="Dừa">
+                    <div class="card h-100 text-center">
+                        <img src="./dua.jpg" class="card-img-top" alt="Dừa">
+                        <div class="card-body">
+                            <h5 class="card-title">Dừa</h5>
+                            <p class="card-text"><strong>Giá: 30,000 VND/quả</strong></p>
+                            <button class="btn btn-success" onclick="addToCart('Dừa', 30000)">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Dưa hấu">
+                    <div class="card h-100 position-relative">
+                        <img src="./dưa hấu.webp" class="card-img-top" alt="Dưa hấu">
+                        <div class="overlay">
+                            <span>HẾT HÀNG</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dưa hấu</h5>
+                            <p class="card-text"><strong>Giá: 50,000 đ/kg</strong></p>
+                            <button class="btn btn-outline-success" disabled>HẾT SẢN PHẨM</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Kiwi">
+                    <div class="card h-100 position-relative">
+                        <img src="./kiwi.jpg" class="card-img-top" alt="Kiwi">
+                        <div class="overlay">
+                            <span>HẾT HÀNG</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Kiwi</h5>
+                            <p class="card-text"><strong>Giá:25,000 đ/kg</strong></p>
+                            <button class="btn btn-outline-success" disabled>HẾT SẢN PHẨM</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col" data-name="Lê">
+                    <div class="card h-100 position-relative">
+                        <img src="./le.jpg" class="card-img-top" alt="Lê">
+                        <div class="overlay">
+                            <span>HẾT HÀNG</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Lê</h5>
+                            <p class="card-text"><strong>Giá: 35,000 đ/kg</strong></p>
+                            <button class="btn btn-outline-success" disabled>HẾT SẢN PHẨM</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-name="Ổi">
+                    <div class="card h-100 position-relative">
+                        <img src="./oi.jpg" class="card-img-top" alt="Ổi">
+                        <div class="overlay">
+                            <span>HẾT HÀNG</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Ổi</h5>
+                            <p class="card-text"><strong>Giá: 25,000 đ/kg</strong></p>
+                            <button class="btn btn-outline-success" disabled>HẾT SẢN PHẨM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Giỏ hàng & Thanh toán -->
+    <section class="container my-4">
+        <h2>Giỏ hàng</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <h3>Tổng tiền: <span id="total-price">0 VND</span></h3>
+        <button id="checkout-btn" class="btn btn-success mt-3">Thanh toán</button>
+        <a href="./nhap1.html" class="btn btn-primary mt-3">Tiếp tục mua sắm</a>
+        </div>
+    </section>
+
+    <!-- Trang quản trị -->
+    <section class="container my-4">
+        <h2>Quản trị hệ thống</h2>
+        <p>Quản lý sản phẩm, đơn hàng, khách hàng, nội dung.</p>
+
+        <h3>Thống kê</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Doanh thu hôm nay</h5>
+                        <p class="card-text" id="today-revenue">0đ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Số đơn hàng</h5>
+                        <p class="card-text" id="order-count">0 đơn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center p-3 mt-4">
+        <p><h2>Cửa Hàng Trái Cây</h2></p>
+        <p>SDT: 03629767456</p>
+        <p>Địa Chỉ: Số 1, Phố Xốm, Phú Lãm, Hà Đông</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            function updateLocalStorage() {
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+
+            function renderCart() {
+                const cartTableBody = document.querySelector("tbody");
+                const totalPriceElement = document.getElementById("total-price");
+                cartTableBody.innerHTML = "";
+                let total = 0;
+
+                cart.forEach((item, index) => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                <td>${item.name}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary" onclick="decreaseQuantity(${index})">-</button>
+                    ${item.quantity}
+                    <button class="btn btn-sm btn-outline-primary" onclick="increaseQuantity(${index})">+</button>
+                </td>
+                <td>${(item.price * item.quantity).toLocaleString()} VND</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" onclick="removeItem(${index})">Xóa</button>
+                </td>
+            `;
+                    cartTableBody.appendChild(row);
+                    total += item.price * item.quantity;
+                });
+
+                totalPriceElement.textContent = total.toLocaleString() + " VND";
+            }
+
+            function addToCart(name, price) {
+                let itemIndex = cart.findIndex(item => item.name === name);
+                if (itemIndex > -1) {
+                    cart[itemIndex].quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                updateLocalStorage();
+                renderCart();
+            }
+
+            function removeItem(index) {
+                cart.splice(index, 1);
+                updateLocalStorage();
+                renderCart();
+            }
+
+            function increaseQuantity(index) {
+                cart[index].quantity += 1;
+                updateLocalStorage();
+                renderCart();
+            }
+
+            function decreaseQuantity(index) {
+                if (cart[index].quantity > 1) {
+                    cart[index].quantity -= 1;
+                } else {
+                    cart.splice(index, 1);
+                }
+                updateLocalStorage();
+                renderCart();
+            }
+
+            // Xử lý khi bấm nút Thanh toán
+            document.getElementById("checkout-btn").addEventListener("click", function () {
+                if (cart.length === 0) {
+                    alert("Giỏ hàng của bạn đang trống!");
+                    return;
+                }
+
+                let confirmPayment = confirm("Bạn có chắc chắn muốn thanh toán không?");
+                if (confirmPayment) {
+                    alert("Thanh toán thành công! Cảm ơn bạn đã mua hàng.");
+                    cart = [];
+                    updateLocalStorage();
+                    renderCart();
+                }
+            });
+
+
+            window.addToCart = addToCart;
+            window.removeItem = removeItem;
+            window.increaseQuantity = increaseQuantity;
+            window.decreaseQuantity = decreaseQuantity;
+
+            renderCart();
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ HàngHàng Trái Cây</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .nav-link {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+    
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    </style>
+</head>
+
+<body>
+    <header style="background-color: #2E7D32; padding: 15px 0; text-align: center;">
+        <h1 style="color: white; margin-bottom: 10px;">Cửa Hàng Trái Cây</h1>
+        <nav>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 15px;">
+                <li><a href="./nhap1.html" class="nav-link">Trang Chủ</a></li>
+                <li><a href="./nhap.html" class="nav-link">Sản Phẩm</a></li>
+                <li><a href="./giohang.html" class="nav-link">Giỏ Hàng</a></li>
+                <li><a href="#" class="nav-link">Quản Trị</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Giỏ hàng & Thanh toán -->
+    <section class="container my-4">
+        <h2>Giỏ hàng</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <h3>Tổng tiền: <span id="total-price">0 VND</span></h3>
+        <button id="checkout-btn" class="btn btn-success mt-3">Thanh toán</button>
+        <a href="./nhap1.html" class="btn btn-primary mt-3">Tiếp tục mua sắm</a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            function updateLocalStorage() {
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+
+            function renderCart() {
+                const cartTableBody = document.querySelector("tbody");
+                const totalPriceElement = document.getElementById("total-price");
+                cartTableBody.innerHTML = "";
+                let total = 0;
+
+                cart.forEach((item, index) => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                <td>${item.name}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary" onclick="decreaseQuantity(${index})">-</button>
+                    ${item.quantity}
+                    <button class="btn btn-sm btn-outline-primary" onclick="increaseQuantity(${index})">+</button>
+                </td>
+                <td>${(item.price * item.quantity).toLocaleString()} VND</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" onclick="removeItem(${index})">Xóa</button>
+                </td>
+            `;
+                    cartTableBody.appendChild(row);
+                    total += item.price * item.quantity;
+                });
+
+                totalPriceElement.textContent = total.toLocaleString() + " VND";
+            }
+
+            function addToCart(name, price) {
+                let itemIndex = cart.findIndex(item => item.name === name);
+                if (itemIndex > -1) {
+                    cart[itemIndex].quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+                updateLocalStorage();
+                renderCart();
+            }
+
+            function removeItem(index) {
+                cart.splice(index, 1);
+                updateLocalStorage();
+                renderCart();
+            }
+
+            function increaseQuantity(index) {
+                cart[index].quantity += 1;
+                updateLocalStorage();
+                renderCart();
+            }
+
+            function decreaseQuantity(index) {
+                if (cart[index].quantity > 1) {
+                    cart[index].quantity -= 1;
+                } else {
+                    cart.splice(index, 1);
+                }
+                updateLocalStorage();
+                renderCart();
+            }
+
+            // Xử lý khi bấm nút Thanh toán
+            document.getElementById("checkout-btn").addEventListener("click", function () {
+                if (cart.length === 0) {
+                    alert("Giỏ hàng của bạn đang trống!");
+                    return;
+                }
+
+                let confirmPayment = confirm("Bạn có chắc chắn muốn thanh toán không?");
+                if (confirmPayment) {
+                    alert("Thanh toán thành công! Cảm ơn bạn đã mua hàng.");
+                    cart = [];
+                    updateLocalStorage();
+                    renderCart();
+                }
+            });
+
+
+            window.addToCart = addToCart;
+            window.removeItem = removeItem;
+            window.increaseQuantity = increaseQuantity;
+            window.decreaseQuantity = decreaseQuantity;
+
+            renderCart();
+        });
+
+    </script>
+
+</body>
+
+</html>
